@@ -5,31 +5,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;  // Movement speed
-    public float dashSpeed = 10f;  // Dash speed
-    public float dashDuration = 0.2f;  // Duration of the dash
-    public Animator animator;
+    public GameObject Monk;
+    public GameObject Hood;
+    private PlayerState CurrentState;
+    public float moveSpeed;
+    public float dashSpeed = 10f;
+    public float dashDuration = 0.2f; 
 
-    private Vector2 movement;  // Stores movement input
-    private bool isDashing = false;  // Tracks if the player is dashing 
-    //public GameObject explosionPrefab;  // Explosion prefab
+    private Vector2 movement; 
+    private bool isDashing = false; 
     public GameObject dashWind;
 
-    private bool inAlternateDimension = false;  // Tracks current dimension
-    //public TrailRenderer trailRenderer;  // TrailRenderer for drawing path
-    //public AxeSwing axeSwing; 
     GameManager gameManager;
     public float DashCooldown = 1f;
     public int playerHealth = 3;
-    public Transform playerTransform;
-    public Vector3 playerPosition => playerTransform.position + new Vector3(0.15f, 0.4f, 0);
+    public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
     private bool busy = false;
     public GameObject summonPrefab;
+    private Animator animator;
 
     protected virtual void Start()
     {
-        // Disable the TrailRenderer initially
-        //trailRenderer.emitting = false;
+        animator = Monk.GetComponent<Animator>();
+        CurrentState = Monk.GetComponent<PlayerState>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -48,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
             // Handle rotation to face the mouse
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0; // Ensure z position is zero for 2D
-            Vector3 direction = (mousePos - playerTransform.position).normalized;
+            Vector3 direction = (mousePos - transform.position).normalized;
             bool rightTurn = direction.x > 0;
 
             // Flip the character based on mouse position
-            playerTransform.rotation = Quaternion.Euler(0, rightTurn ? 0 : 180, 0);
+            transform.rotation = Quaternion.Euler(0, rightTurn ? 0 : 180, 0);
 
             // Handle dash
             if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1)) && !isDashing)
@@ -60,12 +58,10 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(Dash());
             }
 
-            // Apply movement if not dashing
             Vector2 moveDirection = movement.normalized * moveSpeed * Time.deltaTime;
-            playerTransform.Translate(moveDirection, Space.World);
+            transform.Translate(moveDirection, Space.World);
             
 
-            // Handle dimension switching
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SwitchDimension();
@@ -73,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(Attack());
-                //axeSwing.Swing();
             }
         }
     }
@@ -81,13 +76,12 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Dash()
     {
         isDashing = true;
-        Vector2 dashDirection = movement.normalized; // Maintain direction during dash
+        Vector2 dashDirection = movement.normalized;
         float startTime = Time.time;
         dashWind.SetActive(true);
         while (Time.time < startTime + dashDuration)
         {
-            // Move the player during dash
-            playerTransform.Translate(dashDirection * dashSpeed * Time.deltaTime, Space.World);
+            transform.Translate(dashDirection * dashSpeed * Time.deltaTime, Space.World);
             yield return null;
         }
         yield return ResetDash();
@@ -104,29 +98,28 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         busy = false;
+        StartCoroutine(CurrentState.Attack());
     }
     void SwitchDimension()
     {
-        gameManager.ChangeDimension();
-    }
-
-    /*IEnumerator TriggerExplosion()
-    {
-        // Get all positions from the TrailRenderer
-        Vector3[] positions = new Vector3[trailRenderer.positionCount];
-        trailRenderer.GetPositions(positions);
-
-        // Instantiate fewer explosions along the trail
-        for (int i = 0; i < positions.Length; i += 10)  // Adjust the step to control explosion frequency
+        int dimension = gameManager.ChangeDimension();
+        if (dimension == 0)
         {
-            GameObject explosionObject = Instantiate(explosionPrefab, positions[i], Quaternion.identity);
-            Destroy(explosionObject, 0.06f);  // Destroy explosion prefab after 2 seconds
-            yield return null;  // Small delay between explosions
+            Monk.SetActive(true);
+            Hood.SetActive(false);
+            animator = Monk.GetComponent<Animator>();
+            CurrentState = Monk.GetComponent<PlayerState>();
         }
-
-        // Clear the trail after explosions
-        trailRenderer.Clear();
-    }*/
+        else if (dimension == 1)
+        {
+            Monk.SetActive(false);
+            Hood.SetActive(true);
+            animator = Hood.GetComponent<Animator>();
+            CurrentState = Hood.GetComponent<PlayerState>();
+        }
+        busy = true;
+        StartCoroutine(SummonCircle());
+    }
 
     void OnDisable()
     {
@@ -142,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator SummonCircle()
     {
-        Vector3 position = playerTransform.position;
+        Vector3 position = transform.position;
         GameObject prefab = Instantiate(summonPrefab, new Vector3(position.x, position.y, position.z), Quaternion.identity);
         SpriteRenderer spriteRenderer = prefab.GetComponent<SpriteRenderer>();
         float transparency = spriteRenderer.color.a;

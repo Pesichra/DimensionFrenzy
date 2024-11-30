@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMonkMovement : PlayerMovement
+public class PlayerMonkMovement : PlayerState
 {
 
-    protected override IEnumerator Attack()
+    public override IEnumerator Attack()
     {
-        yield return base.Attack();
         AudioSource characterAudio = gameObject.GetComponent<AudioSource>();
         if (characterAudio == null) yield break;
         characterAudio.PlayOneShot(characterAudio.clip);
