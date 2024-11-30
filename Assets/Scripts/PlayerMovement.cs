@@ -96,9 +96,9 @@ public class PlayerMovement : MonoBehaviour
     {
         busy = true;
         animator.SetTrigger("Attack");
+        StartCoroutine(CurrentState.Attack());
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         busy = false;
-        StartCoroutine(CurrentState.Attack());
     }
     void SwitchDimension()
     {
