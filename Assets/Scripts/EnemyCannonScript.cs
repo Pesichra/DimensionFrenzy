@@ -31,6 +31,8 @@ public class EnemyCannonScript : EnemyScript
         yield return new WaitForSeconds(0.2f);
         if (!lookright){
             bulletPositionOffset = new Vector3(-0.691f, bulletPositionOffset.y, bulletPositionOffset.z);
+        }else{
+            bulletPositionOffset = new Vector3(0.691f, bulletPositionOffset.y, bulletPositionOffset.z);
         }
         GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletPositionOffset, transform.rotation);
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
