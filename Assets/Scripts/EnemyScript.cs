@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     public int health;
     public int dimension;
     protected GameObject player;
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
         GameManager.OnDimensionChange += HandleDimensionChange;

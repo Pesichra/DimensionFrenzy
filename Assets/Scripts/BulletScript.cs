@@ -13,9 +13,8 @@ public class BulletScript : EnemyScript
     public Vector3 PushVector;
     private bool deflected = false;
     public GameObject fireOrigin;
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         StartCoroutine(ActivateCollider());
     }
     // Update is called once per frame

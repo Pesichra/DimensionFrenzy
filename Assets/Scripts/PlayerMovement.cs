@@ -52,15 +52,17 @@ public class PlayerMovement : MonoBehaviour
             // Flip the character based on mouse position
             transform.rotation = Quaternion.Euler(0, rightTurn ? 0 : 180, 0);
 
+            
+
+            Vector2 moveDirection = movement.normalized;
+            GetComponent<Rigidbody2D>().velocity = moveDirection * moveSpeed; //cainos movement
+            //transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World); // my movement
+            
             // Handle dash
             if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1)) && !isDashing)
             {
                 StartCoroutine(Dash());
             }
-
-            Vector2 moveDirection = movement.normalized * moveSpeed * Time.deltaTime;
-            transform.Translate(moveDirection, Space.World);
-            
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -70,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(Attack());
             }
+        }else{
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
@@ -105,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         int dimension = gameManager.ChangeDimension();
         if (dimension == 0)
         {
+            Monk.GetComponent<SpriteRenderer>().sortingLayerName =  Hood.GetComponent<SpriteRenderer>().sortingLayerName;
             Monk.SetActive(true);
             Hood.SetActive(false);
             animator = Monk.GetComponent<Animator>();
@@ -112,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (dimension == 1)
         {
+            Hood.GetComponent<SpriteRenderer>().sortingLayerName =  Monk.GetComponent<SpriteRenderer>().sortingLayerName;
             Monk.SetActive(false);
             Hood.SetActive(true);
             animator = Hood.GetComponent<Animator>();

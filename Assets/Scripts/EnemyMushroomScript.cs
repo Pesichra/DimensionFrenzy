@@ -25,9 +25,13 @@ public class EnemyMushroomScript : EnemyScript
             {   
                 bool lookright = (player.GetComponent<PlayerMovement>().playerPosition - transform.position).normalized.x > 0;
                 transform.rotation = Quaternion.Euler(0, lookright ? 0 : 180, 0);
-                transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<PlayerMovement>().playerPosition, speed * Time.deltaTime);
+                
+                Vector2 moveDirection = (player.GetComponent<PlayerMovement>().playerPosition - transform.position).normalized;
+                GetComponent<Rigidbody2D>().velocity = moveDirection * speed; // cainos movement
+                //transform.Translate(moveDirection * speed * Time.deltaTime, Space.World); // my movement
             }
         }else{
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             animator.SetBool("busy", true);
         }
         
