@@ -20,4 +20,9 @@ public class PropsScript : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    void OnDestroy()
+    {
+        GameManager.OnDimensionChange -= HandleDimensionChange;
+    }
 }

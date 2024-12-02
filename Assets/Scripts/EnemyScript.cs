@@ -8,6 +8,8 @@ public class EnemyScript : MonoBehaviour
     public int health;
     public int dimension;
     protected GameObject player;
+    public GameObject glowingOrbPrefab;
+    public GameObject sprite;
     protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -27,9 +29,12 @@ public class EnemyScript : MonoBehaviour
     {
         if (newDimension == dimension)
         {
-            gameObject.SetActive(true);
+            sprite.SetActive(true);
+            glowingOrbPrefab.SetActive(false);
         }else{
-            gameObject.SetActive(false);
+            sprite.SetActive(false);
+            glowingOrbPrefab.transform.position = transform.position;
+            glowingOrbPrefab.SetActive(true);
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
