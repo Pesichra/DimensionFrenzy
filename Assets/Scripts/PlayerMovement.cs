@@ -85,12 +85,14 @@ public class PlayerMovement : MonoBehaviour
         dashWind.SetActive(true);
         while (Time.time < startTime + dashDuration)
         {
-            transform.Translate(dashDirection * dashSpeed * Time.deltaTime, Space.World);
+            //transform.Translate(dashDirection * dashSpeed * Time.deltaTime, Space.World);
+            GetComponent<Rigidbody2D>().velocity = dashDirection * dashSpeed; //cainos movement
             yield return null;
         }
         yield return ResetDash();
     }
     IEnumerator ResetDash(){
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         dashWind.SetActive(false);
         yield return new WaitForSeconds(DashCooldown);
         isDashing = false;
