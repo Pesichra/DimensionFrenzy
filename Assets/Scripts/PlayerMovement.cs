@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,17 +19,28 @@ public class PlayerMovement : MonoBehaviour
 
     GameManager gameManager;
     public float DashCooldown = 1f;
+    public int playerMaxHealth = 3;
     public int playerHealth = 3;
     public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
     private bool busy = false;
     public GameObject summonPrefab;
     private Animator animator;
 
+    public GameObject healthbar;
+    public GameObject heartPrefab;
+    public Sprite heartSprite;
+    public Sprite lostHeartSprite;
+    private List<GameObject> hearts = new List<GameObject>();
     protected virtual void Start()
     {
         animator = Monk.GetComponent<Animator>();
         CurrentState = Monk.GetComponent<PlayerState>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        for(int i = 0; i < playerMaxHealth; i++){
+            GameObject heart = Instantiate(heartPrefab, healthbar.transform);
+            heart.transform.localPosition = new Vector3(heart.transform.localPosition.x + i * 0.8f, heart.transform.localPosition.y, heart.transform.localPosition.z);
+            hearts.Add(heart);
+        }
     }
 
     void Update()
@@ -71,6 +83,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(Attack());
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact(movement.x, movement.y);
             }
         }else{
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -164,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator TakeDamage(){
         busy = true;
         playerHealth--;
+        hearts[playerHealth].GetComponent<SpriteRenderer>().sprite = lostHeartSprite;
         if(playerHealth <= 0){
             GetComponent<Collider2D>().enabled = false;
             animator.SetTrigger("Death");
@@ -174,6 +191,61 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
             busy = false;
         }
+    }
+
+    void Interact(float movementX, float movementY){
+        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, 1f);
+        foreach (Collider2D interactable in interactables)
+        {
+            if (interactable.CompareTag("Interactable"))
+            {
+                interactable.GetComponent<IInteractable>().Interact();
+            }
+        }
+        Collider2D closestInteractable = null;
+        float closestDistance = 1f;
+        Vector2 facingDirection = new Vector2(movementX, movementY);
+
+        foreach (Collider2D interactable in interactables)
+        {
+            if (interactable.CompareTag("Interactable"))
+            {
+                Vector2 directionToInteractable = (interactable.transform.position - transform.position).normalized;
+                float distanceToInteractable = Vector2.Distance(transform.position, interactable.transform.position);
+
+                if (Vector2.Dot(facingDirection, directionToInteractable) > 0.5f && distanceToInteractable < closestDistance)
+                {
+                    closestDistance = distanceToInteractable;
+                    closestInteractable = interactable;
+                }
+            }
+        }
+
+        if (closestInteractable != null)
+        {
+            closestInteractable.GetComponent<IInteractable>().Interact();
+        }
+    }
+
+    public void Heal(int amount){
+        for(int i = 0; i < amount; i++){
+            if(playerHealth < playerMaxHealth){
+                hearts[playerHealth].GetComponent<SpriteRenderer>().sprite = heartSprite;
+                playerHealth++;
+            }
+        }
+    }
+
+    public void IncreaseMaxHealth(int amount){
+        int excess = amount - (playerMaxHealth - playerHealth);
+        Heal(amount);
+        for(int i = 0; i < amount; i++){
+            GameObject heart = Instantiate(heartPrefab, healthbar.transform);
+            heart.transform.localPosition = new Vector3(heartPrefab.transform.localPosition.x + (playerMaxHealth + i) * 0.8f, heartPrefab.transform.localPosition.y, heartPrefab.transform.localPosition.z);
+            heart.GetComponent<SpriteRenderer>().sprite = i < excess ? heartSprite : lostHeartSprite;
+            hearts.Add(heart);
+        }
+        playerMaxHealth += amount;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

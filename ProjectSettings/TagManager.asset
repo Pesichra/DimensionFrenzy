@@ -9,6 +9,9 @@ TagManager:
   - Projectile
   - Obstacle
   - DamageObject
+  - IgnoreTheme
+  - Button
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -42,9 +45,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -57,4 +57,7 @@ TagManager:
     locked: 0
   - name: Layer 3
     uniqueID: 4189426099
+    locked: 0
+  - name: UI
+    uniqueID: 4087199213
     locked: 0

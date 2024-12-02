@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +13,14 @@ public class GameManager : MonoBehaviour
     public Color alternateDimensionColor;  // Background for alternate dimension
     public Camera mainCamera;  // Reference to the main camera
     public GameObject menu;
+    
     public static event Action<int> OnDimensionChange;
     // Start is called before the first frame update
     void Start()
     {
         playerDimension = 0;
         OnDimensionChange?.Invoke(playerDimension);
+        
     }
 
     // Update is called once per frame
