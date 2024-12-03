@@ -196,13 +196,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Interact(float movementX, float movementY){
         Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, 1f);
-        foreach (Collider2D interactable in interactables)
-        {
-            if (interactable.CompareTag("Interactable"))
-            {
-                interactable.GetComponent<IInteractable>().Interact();
-            }
-        }
+        
         Collider2D closestInteractable = null;
         float closestDistance = 1f;
         Vector2 facingDirection = new Vector2(movementX, movementY);
@@ -224,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (closestInteractable != null)
         {
-            closestInteractable.GetComponent<IInteractable>().Interact();
+            closestInteractable.GetComponent<IInteractable>().Interact(gameObject);
         }
     }
 

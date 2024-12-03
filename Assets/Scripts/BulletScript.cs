@@ -49,6 +49,12 @@ public class BulletScript : EnemyScript
             Destroy(gameObject);
         }
     }
+    protected override void OnEnable(){
+        base.OnEnable();
+        if(!GetComponent<Collider2D>().enabled){
+            StartCoroutine(ActivateCollider());
+        }
+    }
 
     IEnumerator ActivateCollider()
     {
