@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed = 10f;
     public float dashDuration = 0.2f; 
 
-    private Vector2 movement; 
+    public Vector2 movement; 
     private bool isDashing = false; 
     public GameObject dashWind;
 
@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth = 3;
     public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
-    public Vector3 carryOffset;
     private bool busy = false;
     public GameObject summonPrefab;
     private Animator animator;
