@@ -21010,6 +21010,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
         type: 3}
+      propertyPath: carryOffset.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
+        type: 3}
+      propertyPath: carryOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
+        type: 3}
       propertyPath: lostHeartSprite
       value: 
       objectReference: {fileID: 2092725794, guid: 497877696662aee47ba7434638be1ea7,
@@ -22000,6 +22010,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1057889084}
     m_Modifications:
+    - target: {fileID: 2577585254963922476, guid: fb2df5b680b64b449a78162ebcd98e97,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2577585254963922480, guid: fb2df5b680b64b449a78162ebcd98e97,
         type: 3}
       propertyPath: m_Name
@@ -23116,6 +23131,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 954155475}
     m_Modifications:
+    - target: {fileID: 2025962302176580985, guid: fb2df5b680b64b449a78162ebcd98e97,
+        type: 3}
+      propertyPath: PropsDim0
+      value: 
+      objectReference: {fileID: 1057889083}
+    - target: {fileID: 2025962302176580985, guid: fb2df5b680b64b449a78162ebcd98e97,
+        type: 3}
+      propertyPath: PropsDim1
+      value: 
+      objectReference: {fileID: 954155474}
     - target: {fileID: 2577585254963922480, guid: fb2df5b680b64b449a78162ebcd98e97,
         type: 3}
       propertyPath: m_Name
@@ -36066,6 +36091,8 @@ MonoBehaviour:
   menu: {fileID: 886285984}
   deathMenu: {fileID: 1505504508}
   winMenu: {fileID: 1981327160}
+  PropsDim0: {fileID: 1057889083}
+  PropsDim1: {fileID: 954155474}
 --- !u!4 &1984736542
 Transform:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth = 3;
     public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
-    public Vector3 carryOffset = new Vector3(0.9f, -0.4f,0);
+    public Vector3 carryOffset;
     private bool busy = false;
     public GameObject summonPrefab;
     private Animator animator;
@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Interact(float movementX, float movementY){
         if(holdingItem != null){
-            holdingItem.Drop();
+            holdingItem.Drop(GameManager.playerDimension);
             holdingItem = null;
             return;
         }

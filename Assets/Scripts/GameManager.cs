@@ -8,13 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static int playerDimension = 0;
+    public static int playerDimension = 0;
     public Color originalDimensionColor;  // Background for original dimension
     public Color alternateDimensionColor;  // Background for alternate dimension
     public Camera mainCamera;  // Reference to the main camera
     public GameObject menu;
     public GameObject deathMenu;
     public GameObject winMenu;
+    public GameObject PropsDim0;
+    public GameObject PropsDim1;
     
     public static event Action<int> OnDimensionChange;
     // Start is called before the first frame update
