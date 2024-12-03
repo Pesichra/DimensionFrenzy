@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;  // Reference to the main camera
     public GameObject menu;
     public GameObject deathMenu;
+    public GameObject winMenu;
     
     public static event Action<int> OnDimensionChange;
     // Start is called before the first frame update
@@ -62,5 +63,10 @@ public class GameManager : MonoBehaviour
         }
         OnDimensionChange?.Invoke(playerDimension);
         return playerDimension;
+    }
+
+    public void EndGame(){
+        winMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 }
