@@ -237,15 +237,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void IncreaseMaxHealth(int amount){
-        int excess = amount - (playerMaxHealth - playerHealth);
-        Heal(amount);
         for(int i = 0; i < amount; i++){
             GameObject heart = Instantiate(heartPrefab, healthbar.transform);
             heart.transform.localPosition = new Vector3(heartPrefab.transform.localPosition.x + (playerMaxHealth + i) * 0.8f, heartPrefab.transform.localPosition.y, heartPrefab.transform.localPosition.z);
-            heart.GetComponent<SpriteRenderer>().sprite = i < excess ? heartSprite : lostHeartSprite;
+            heart.GetComponent<SpriteRenderer>().sprite = lostHeartSprite;
             hearts.Add(heart);
         }
         playerMaxHealth += amount;
+        Heal(amount);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
