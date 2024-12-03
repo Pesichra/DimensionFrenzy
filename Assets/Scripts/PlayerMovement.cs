@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth = 3;
     public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
+    public Vector3 carryOffset = new Vector3(0.9f, -0.4f,0);
     private bool busy = false;
     public GameObject summonPrefab;
     private Animator animator;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite heartSprite;
     public Sprite lostHeartSprite;
     private List<GameObject> hearts = new List<GameObject>();
+    private MoveableObject holdingItem = null;
     protected virtual void Start()
     {
         animator = Monk.GetComponent<Animator>();
@@ -195,6 +197,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Interact(float movementX, float movementY){
+        if(holdingItem != null){
+            holdingItem.Drop();
+            holdingItem = null;
+            return;
+        }
         Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, 1f);
         
         Collider2D closestInteractable = null;
@@ -215,9 +222,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
         if (closestInteractable != null)
         {
+            if(closestInteractable.GetComponent<MoveableObject>() != null){
+                holdingItem = closestInteractable.GetComponent<MoveableObject>();
+            }
             closestInteractable.GetComponent<IInteractable>().Interact(gameObject);
         }
     }
