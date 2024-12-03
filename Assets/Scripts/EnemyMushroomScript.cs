@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyMushroomScript : EnemyScript
 {
     public float speed;
+    public float aggroRange;
     public float attackSpeed;
     private bool busy = false;
     public Animator animator;
@@ -21,7 +22,7 @@ public class EnemyMushroomScript : EnemyScript
             {
                 StartCoroutine(Attack());
             }
-            else
+            else if (distance.magnitude < aggroRange)
             {   
                 bool lookright = (player.GetComponent<PlayerMovement>().playerPosition - transform.position).normalized.x > 0;
                 transform.rotation = Quaternion.Euler(0, lookright ? 0 : 180, 0);

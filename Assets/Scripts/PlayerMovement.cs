@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
         if(playerHealth <= 0){
             GetComponent<Collider2D>().enabled = false;
             animator.SetTrigger("Death");
+            gameManager.GameOver();
             yield return null;
         }
         else{

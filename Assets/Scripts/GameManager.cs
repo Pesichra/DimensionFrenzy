@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Color alternateDimensionColor;  // Background for alternate dimension
     public Camera mainCamera;  // Reference to the main camera
     public GameObject menu;
+    public GameObject deathMenu;
     
     public static event Action<int> OnDimensionChange;
     // Start is called before the first frame update
@@ -35,6 +36,20 @@ public class GameManager : MonoBehaviour
     public void ToggleMenu(){
         menu.SetActive(!menu.activeSelf);
         Time.timeScale = menu.activeSelf ? 0 : 1;
+    }
+    public void ReturnToHomepage(){
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void GameOver(){
+        
+        deathMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void TryAgain(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 
     public int ChangeDimension(){
