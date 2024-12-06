@@ -12726,11 +12726,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 591230632294527245, guid: 6e49a18518c464f4eb6210302979f0b8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1627640257156333931, guid: 6e49a18518c464f4eb6210302979f0b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20996,34 +20991,6 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 103917054}
-    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
-        type: 3}
-      propertyPath: heartPrefab
-      value: 
-      objectReference: {fileID: 5788874219246953936, guid: b4d69c1f0437e1c4d829f9778d3c7b1e,
-        type: 3}
-    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
-        type: 3}
-      propertyPath: heartSprite
-      value: 
-      objectReference: {fileID: 1426218695, guid: 497877696662aee47ba7434638be1ea7,
-        type: 3}
-    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
-        type: 3}
-      propertyPath: carryOffset.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
-        type: 3}
-      propertyPath: carryOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4649332041435574135, guid: 71d32b45130d298448570eb9747f2b6b,
-        type: 3}
-      propertyPath: lostHeartSprite
-      value: 
-      objectReference: {fileID: 2092725794, guid: 497877696662aee47ba7434638be1ea7,
-        type: 3}
     - target: {fileID: 7431799246963420143, guid: 71d32b45130d298448570eb9747f2b6b,
         type: 3}
       propertyPath: m_Name

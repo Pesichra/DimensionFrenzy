@@ -160,11 +160,18 @@ MonoBehaviour:
   moveSpeed: 5
   dashSpeed: 10
   dashDuration: 0.2
+  movement: {x: 0, y: 0}
   dashWind: {fileID: 1118088220774666132}
   DashCooldown: 1
+  playerMaxHealth: 3
   playerHealth: 3
   summonPrefab: {fileID: 5043573985140183233, guid: 848696729adea4a478c42b7b6c642e91,
     type: 3}
+  healthbar: {fileID: 0}
+  heartPrefab: {fileID: 5788874219246953936, guid: b4d69c1f0437e1c4d829f9778d3c7b1e,
+    type: 3}
+  heartSprite: {fileID: 1426218695, guid: 497877696662aee47ba7434638be1ea7, type: 3}
+  lostHeartSprite: {fileID: 2092725794, guid: 497877696662aee47ba7434638be1ea7, type: 3}
 --- !u!61 &6077002590572064044
 BoxCollider2D:
   m_ObjectHideFlags: 0

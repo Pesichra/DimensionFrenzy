@@ -11,7 +11,7 @@ public class WoodenDoorScript : MonoBehaviour, IInteractable
     public bool isOpen;
     public bool locked;
     public TextMeshProUGUI lockedText;
-    void Awake()
+    void OnEnable()
     {
         if(!isOpen){
 
@@ -21,6 +21,7 @@ public class WoodenDoorScript : MonoBehaviour, IInteractable
         else{
             gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
         }
+        lockedText.alpha = 0;
     }
     public void Interact(GameObject player)
     {
@@ -38,8 +39,7 @@ public class WoodenDoorScript : MonoBehaviour, IInteractable
     }
 
     IEnumerator animateLockedText(){
-        lockedText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        lockedText.gameObject.SetActive(false);
+        lockedText.GetComponent<Animation>().Play();
+        yield return null;
     }
 }
