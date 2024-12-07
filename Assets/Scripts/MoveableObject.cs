@@ -25,13 +25,14 @@ public class MoveableObject : MonoBehaviour, IInteractable
     void Update(){
         if(isCarried){
             Vector3 movement = player.GetComponent<PlayerMovement>().movement;
+            bool inverted = player.GetComponent<PlayerMovement>().lookRight;
             if (movement.x > 0)
             {
-                transform.localPosition = new Vector3(1, 0, 0);
+                transform.localPosition = new Vector3( inverted? 1 : -1, 0, 0);
             }
             else if (movement.x < 0)
             {
-                transform.localPosition = new Vector3(-1, 0, 0);
+                transform.localPosition = new Vector3(inverted? -1 : 1, 0, 0);
             }
             else if (movement.y > 0)
             {

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth = 3;
     public Vector3 playerPosition => transform.position + new Vector3(0.15f, 0.4f, 0);
+    public bool lookRight = false;
     private bool busy = false;
     public GameObject summonPrefab;
     private Animator animator;
@@ -60,10 +61,10 @@ public class PlayerMovement : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0; // Ensure z position is zero for 2D
             Vector3 direction = (mousePos - transform.position).normalized;
-            bool rightTurn = direction.x > 0;
+            lookRight = direction.x > 0;
 
             // Flip the character based on mouse position
-            transform.rotation = Quaternion.Euler(0, rightTurn ? 0 : 180, 0);
+            transform.rotation = Quaternion.Euler(0, lookRight ? 0 : 180, 0);
 
             
 
