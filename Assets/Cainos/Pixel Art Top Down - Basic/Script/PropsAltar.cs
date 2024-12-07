@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 //when something get into the alta, make the runes glow
@@ -21,11 +23,21 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            ActivateFunction();
             targetColor.a = 1.0f;
+        }
+
+        public virtual void ActivateFunction(){
+
+        }
+
+        public virtual void DeactivateFunction(){
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            DeactivateFunction();
             targetColor.a = 0.0f;
         }
 

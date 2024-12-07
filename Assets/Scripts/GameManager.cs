@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         playerDimension = 0;
         OnDimensionChange?.Invoke(playerDimension);
-        
+        mainCamera.backgroundColor = originalDimensionColor;
     }
 
     // Update is called once per frame

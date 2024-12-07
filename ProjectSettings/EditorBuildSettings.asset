@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DimensionFrenzyScene.unity
     guid: d9a9fd5182a4025429c97a869864056e
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 8b5e711a82e137049a9bd7ac6f37ee45
   m_configObjects: {}
