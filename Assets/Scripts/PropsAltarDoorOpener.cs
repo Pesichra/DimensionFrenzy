@@ -16,8 +16,7 @@ public class PropsAltarDoorOpener : PropsAltar
 	}
     public override void DeactivateFunction()
 	{
-        door.lockedBack++;
-        door.lockedFront++;
+        door.Lock();
         if(GetComponent<PropsAltarLightSignal>()){
             GetComponent<PropsAltarLightSignal>().UndoLightAltar();
         }
