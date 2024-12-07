@@ -33,15 +33,15 @@ public class WoodenDoorScript : MonoBehaviour, IInteractable
     public bool Unlock()
     {
         bool unlocked = false;
-        if (lockedFront > 0)
-        {
-            lockedFront--;
-            unlocked |= lockedFront == 0;
-        }
-        if (lockedBack > 0)
-        {
-            lockedBack--;
-            unlocked |= lockedBack == 0;
+        lockedFront--;
+        lockedBack--;
+        unlocked |= lockedFront == 0;
+    
+        unlocked |= lockedBack == 0;
+        if(unlocked){
+            gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            isOpen = true;
         }
         return unlocked;
     }

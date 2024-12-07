@@ -15,6 +15,7 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private Color curColor;
         private Color targetColor;
+        int objectCount = 0;
 
         private void Awake()
         {
@@ -23,7 +24,9 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            ActivateFunction();
+            objectCount++;
+            if(objectCount == 1)
+                ActivateFunction();
             targetColor.a = 1.0f;
         }
 
@@ -37,7 +40,9 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            DeactivateFunction();
+            objectCount--;
+            if(objectCount == 0)
+                DeactivateFunction();
             targetColor.a = 0.0f;
         }
 
