@@ -25,9 +25,10 @@ namespace Cainos.PixelArtTopDown_Basic
         private void OnTriggerEnter2D(Collider2D other)
         {
             objectCount++;
-            if(objectCount == 1)
+            if(objectCount == 1){
                 ActivateFunction();
-            targetColor.a = 1.0f;
+                targetColor.a = 1.0f;
+            }
         }
 
         public virtual void ActivateFunction(){
@@ -41,9 +42,10 @@ namespace Cainos.PixelArtTopDown_Basic
         private void OnTriggerExit2D(Collider2D other)
         {
             objectCount--;
-            if(objectCount == 0)
+            if(objectCount == 0){
                 DeactivateFunction();
-            targetColor.a = 0.0f;
+                targetColor.a = 0.0f;
+            }
         }
 
         private void Update()

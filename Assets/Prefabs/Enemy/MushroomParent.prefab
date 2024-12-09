@@ -108,7 +108,7 @@ MonoBehaviour:
   glowingOrbPrefab: {fileID: 8785096738446494575}
   sprite: {fileID: 1544235094774328612}
   speed: 3
-  aggroRange: 20
+  aggroRange: 10
   attackSpeed: 2
   animator: {fileID: 3469352101782958821}
 --- !u!61 &1207608760670863566

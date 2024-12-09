@@ -2901,7 +2901,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1544235094774328612, guid: 74478bc2915eb4f4b8913ea3e2560c6c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74478bc2915eb4f4b8913ea3e2560c6c, type: 3}
@@ -20810,7 +20811,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1544235094774328612, guid: 74478bc2915eb4f4b8913ea3e2560c6c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74478bc2915eb4f4b8913ea3e2560c6c, type: 3}
@@ -21252,89 +21254,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 954366635}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &954558405
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 62.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376807638008694774, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296462510024489053, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: m_Name
-      value: Mushroom (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409684492722792826, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409684492722792826, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: health
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409684492722792826, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
-        type: 3}
-      propertyPath: dimension
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 74478bc2915eb4f4b8913ea3e2560c6c, type: 3}
 --- !u!1001 &958289490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37693,7 +37612,6 @@ SceneRoots:
   - {fileID: 1521144200}
   - {fileID: 1622312051}
   - {fileID: 1984736542}
-  - {fileID: 954558405}
   - {fileID: 174836912}
   - {fileID: 1956316191}
   - {fileID: 346463084}
