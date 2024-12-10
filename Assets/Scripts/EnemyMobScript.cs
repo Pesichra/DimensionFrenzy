@@ -19,7 +19,7 @@ public abstract class EnemyMobScript : EnemyScript
         base.OnEnable();
         busy = false;
     }
-    void Update()
+    protected virtual void Update()
     {
         if (!busy)
         {
@@ -49,6 +49,7 @@ public abstract class EnemyMobScript : EnemyScript
         yield return null;
     }
     protected abstract IEnumerator Attack();
+
 
     
     protected virtual IEnumerator Die(){

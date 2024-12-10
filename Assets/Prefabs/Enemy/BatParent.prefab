@@ -185,7 +185,7 @@ MonoBehaviour:
   sprite: {fileID: 33012477485895604}
   speed: 3
   aggroRange: 20
-  attackRange: 10
+  attackRange: 20
   attackSpeed: 1
   animator: {fileID: 5144668984552847094}
 --- !u!95 &5144668984552847094

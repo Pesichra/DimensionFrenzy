@@ -32,6 +32,9 @@ public class EnemyScript : MonoBehaviour
             sprite.SetActive(true);
             glowingOrbPrefab.SetActive(false);
         }else{
+            if(GetComponent<Rigidbody2D>() != null){
+                GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            }
             sprite.SetActive(false);
             glowingOrbPrefab.transform.position = transform.position;
             glowingOrbPrefab.SetActive(true);
