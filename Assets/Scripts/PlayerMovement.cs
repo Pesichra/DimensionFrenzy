@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             
 
             Vector2 moveDirection = movement.normalized;
-            GetComponent<Rigidbody2D>().velocity = moveDirection * moveSpeed; //cainos movement
+            GetComponent<Rigidbody2D>().linearVelocity = moveDirection * moveSpeed; //cainos movement
             //transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World); // my movement
             
             // Handle dash
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 Interact(movement.x, movement.y);
             }
         }else{
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         }
     }
 
@@ -104,13 +104,13 @@ public class PlayerMovement : MonoBehaviour
         while (Time.time < startTime + dashDuration)
         {
             //transform.Translate(dashDirection * dashSpeed * Time.deltaTime, Space.World);
-            GetComponent<Rigidbody2D>().velocity = dashDirection * dashSpeed; //cainos movement
+            GetComponent<Rigidbody2D>().linearVelocity = dashDirection * dashSpeed; //cainos movement
             yield return null;
         }
         yield return ResetDash();
     }
     IEnumerator ResetDash(){
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         dashWind.SetActive(false);
         yield return new WaitForSeconds(DashCooldown);
         isDashing = false;

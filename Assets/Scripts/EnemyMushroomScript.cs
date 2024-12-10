@@ -21,7 +21,7 @@ public class EnemyMushroomScript : EnemyMobScript
         transform.rotation = Quaternion.Euler(0, lookright ? 0 : 180, 0);
         
         Vector2 moveDirection = (player.GetComponent<PlayerMovement>().playerPosition - transform.position).normalized;
-        GetComponent<Rigidbody2D>().velocity = moveDirection * speed; // cainos movement
+        GetComponent<Rigidbody2D>().linearVelocity = moveDirection * speed; // cainos movement
     }
 
 

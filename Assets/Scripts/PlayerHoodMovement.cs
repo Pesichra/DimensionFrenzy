@@ -19,7 +19,7 @@ public class PlayerHoodMovement : PlayerState
         Vector3 direction = (mousePosition - playerPosition).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject arrow = Instantiate(arrowPrefab, playerPosition, Quaternion.Euler(new Vector3(0, 180, -angle)));
-        arrow.GetComponent<Rigidbody2D>().velocity = direction * arrowSpeed; // Assuming arrowSpeed is defined
+        arrow.GetComponent<Rigidbody2D>().linearVelocity = direction * arrowSpeed; // Assuming arrowSpeed is defined
         Destroy(arrow, 5f); // Destroy the arrow after 5 seconds to ensure it doesn't stay in the scene forever
         yield return null;
     }

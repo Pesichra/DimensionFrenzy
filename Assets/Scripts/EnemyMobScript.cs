@@ -35,7 +35,7 @@ public abstract class EnemyMobScript : EnemyScript
                 }
             }
         }else{
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             animator.SetBool("busy", true);
         }
         

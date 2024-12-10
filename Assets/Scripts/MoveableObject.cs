@@ -11,7 +11,7 @@ public class MoveableObject : MonoBehaviour, IInteractable
         this.player = player;
         transform.SetParent(player.transform);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         isCarried = true;
     }
     public void Drop(int dimension){
