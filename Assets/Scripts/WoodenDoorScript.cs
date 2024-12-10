@@ -46,8 +46,17 @@ public class WoodenDoorScript : MonoBehaviour, IInteractable
         return unlocked;
     }
     public void Lock(){
+        bool locked = false;
+
         lockedFront = Math.Min(lockedFront + 1, initialState.front);
         lockedBack = Math.Min(lockedBack + 1, initialState.back);
+        locked |= lockedFront >= 1 || lockedBack >= 1;
+        
+        if(locked && isOpen){
+            gameObject.GetComponent<SpriteRenderer>().sprite = doorClosed;
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            isOpen = false;
+        }
     }
 
     public void Interact(GameObject player)
