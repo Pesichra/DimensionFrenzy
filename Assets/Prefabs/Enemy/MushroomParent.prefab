@@ -110,8 +110,10 @@ MonoBehaviour:
   dimension: 1
   glowingOrbPrefab: {fileID: 8785096738446494575}
   sprite: {fileID: 1544235094774328612}
-  speed: 3
+  detectedBreadcrumb: {fileID: 0}
   aggroRange: 10
+  positionOffset: {x: 0, y: -0.2, z: 0}
+  speed: 3
   attackRange: 1
   attackSpeed: 2
   animator: {fileID: 3469352101782958821}
@@ -149,7 +151,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0040275156, y: -0.21476671}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}

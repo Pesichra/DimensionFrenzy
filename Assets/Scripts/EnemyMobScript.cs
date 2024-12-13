@@ -6,7 +6,6 @@ public abstract class EnemyMobScript : EnemyScript
 {
     
     public float speed;
-    public float aggroRange;
     public float attackRange;
     public float attackSpeed;
     protected bool busy = false;
@@ -19,19 +18,24 @@ public abstract class EnemyMobScript : EnemyScript
         base.OnEnable();
         busy = false;
     }
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         if (!busy)
         {
             animator.SetBool("busy", false);
-            Vector3 distance = player.GetComponent<PlayerMovement>().playerPosition - transform.position;
-            if (distance.magnitude < aggroRange)
-            {   
-                if(distance.magnitude < attackRange){
-                    StartCoroutine(StartAttack());
+            if(detectedBreadcrumb != null){
+                Vector3 distanceToPlayer = player.transform.position- transform.position;
+                if(distanceToPlayer.magnitude < attackRange){
+                        StartCoroutine(StartAttack());
                 }else{
-                    AggroTowardsPlayer();
-
+                    Vector3 distanceToBreadcrumb = detectedBreadcrumb.transform.position - transform.position;
+                    if(distanceToBreadcrumb.magnitude < 0.1f){
+                        detectedBreadcrumb = null;
+                        return;
+                    }
+                    detectedBreadcrumb.transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                    MoveToPlayerBreadCrumb();
                 }
             }
         }else{
@@ -41,7 +45,7 @@ public abstract class EnemyMobScript : EnemyScript
         
     }
 
-    protected abstract void AggroTowardsPlayer();
+    protected abstract void MoveToPlayerBreadCrumb();
     protected virtual IEnumerator StartAttack(){
         busy = true;
         yield return Attack();

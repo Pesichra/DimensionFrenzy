@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public Sprite lostHeartSprite;
     private List<GameObject> hearts = new List<GameObject>();
     private MoveableObject holdingItem = null;
+    public GameObject breadCrumbPrefab;
+    public float breadCrumbInterval = 0.05f;
     protected virtual void Start()
     {
         animator = Monk.GetComponent<Animator>();
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             heart.transform.localPosition = new Vector3(heart.transform.localPosition.x + i * 0.8f, heart.transform.localPosition.y, heart.transform.localPosition.z);
             hearts.Add(heart);
         }
+        StartCoroutine(LeaveBreadCrumb());
     }
 
     void Update()
@@ -92,6 +95,22 @@ public class PlayerMovement : MonoBehaviour
             }
         }else{
             GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        }
+
+    }
+
+    IEnumerator LeaveBreadCrumb()
+    {
+        float lastBreadCrumbTime = 0f;
+        while (true)
+        {
+            lastBreadCrumbTime += Time.deltaTime;
+            if (lastBreadCrumbTime >= breadCrumbInterval)
+            {
+                lastBreadCrumbTime = 0;
+                Instantiate(breadCrumbPrefab, transform.position, Quaternion.identity);
+            }
+            yield return null;
         }
     }
 

@@ -31921,8 +31921,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1569204564737793947, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
         type: 3}
-      propertyPath: attackRange
-      value: 1
+      propertyPath: positionOffset.y
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2296462510024489053, guid: 74478bc2915eb4f4b8913ea3e2560c6c,
         type: 3}

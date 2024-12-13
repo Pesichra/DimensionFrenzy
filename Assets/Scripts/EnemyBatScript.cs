@@ -19,7 +19,7 @@ public class EnemyBatScript : EnemyMobScript
                 if(distance.magnitude < attackRange && (Mathf.Abs(distance.x) < 0.5f || Mathf.Abs(distance.y) < 0.5f)){
                     StartCoroutine(base.StartAttack());
                 }else{
-                    AggroTowardsPlayer();
+                    MoveToPlayerBreadCrumb();
 
                 }
             }
@@ -30,7 +30,7 @@ public class EnemyBatScript : EnemyMobScript
         }
         
     }
-    protected override void AggroTowardsPlayer()
+    protected override void MoveToPlayerBreadCrumb()
     {
         Vector3 direction = player.GetComponent<PlayerMovement>().playerPosition  - transform.position;
         if (Mathf.Abs(direction.x) <= Mathf.Abs(direction.y))
